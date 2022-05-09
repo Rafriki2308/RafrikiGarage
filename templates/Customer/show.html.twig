@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Customer{% endblock %}
+
+{% block body %}
+    <h1>Customer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ customer.name }}</td>
+            </tr>
+            <tr>
+                <th>Surnames</th>
+                <td>{{ customer.surnames }}</td>
+            </tr>
+            <tr>
+                <th>IdCard</th>
+                <td>{{ customer.idCard }}</td>
+            </tr>
+            <tr>
+                <th>TelNumber</th>
+                <td>{{ customer.telNumber }}</td>
+            </tr>
+            <tr>
+                <th>EMail</th>
+                <td>{{ customer.eMail }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br/><br/>
+
+    <table>
+        <thead>
+        <tr>
+            <th>RegPlate</th>
+            <th></th>
+            <th>ChasisNum</th>
+            <th></th>
+            <th>Brand</th>
+            <th></th>
+            <th>Model</th>
+            <th></th>
+            <th>EngineType</th>
+            <th></th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.regPlate }}</td>
+                <td></td>
+                <td>{{ car.chasisNum }}</td>
+                <td></td>
+                <td>{{ car.brand }}</td>
+                <td></td>
+                <td>{{ car.model }}</td>
+                <td></td>
+                <td>{{ car.engineType }}</td>
+                <td></td>
+                <td>
+                    <a href="{{ path('app_car_show', {'id': car.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br/><br/>
+
+    <a href="{{ path('app_customer_index') }}">back to list</a>&nbsp;
+
+    <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">edit</a>&nbsp;
+
+    <a href="{{ path('app_car_new', {'id': customer.id })}}">Create new Car</a>
+
+    <br/><br/>
+
+    {{ include('Customer/_delete_form.html.twig') }}
+{% endblock %}

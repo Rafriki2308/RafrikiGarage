@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Worksheet{% endblock %}
+
+{% block body %}
+    <h1>Edit Worksheet</h1>
+
+    {{ include('Worksheet/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <br/>
+
+    <a href="{{ path('app_worksheet_index') }}">back to list</a>
+
+    <br/>
+
+    {{ include('Worksheet/_delete_form.html.twig') }}
+{% endblock %}

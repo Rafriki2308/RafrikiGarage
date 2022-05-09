@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Worksheet index{% endblock %}
+
+{% block body %}
+    <h1>Worksheet index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Worksheet Number</th>
+                <th></th>
+                <th>Registration Plate</th>
+                <th></th>
+                <th>Description</th>
+                <th></th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for worksheet in worksheets %}
+            <tr>
+                <td>{{ worksheet.id }}</td>
+                <td></td>
+                <td>{{ worksheet.car.regPlate }}</td>
+                <td></td>
+                <td>{{ worksheet.description }}</td>
+                <td></td>
+                <td>
+                    <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">show</a>&nbsp;
+                    <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br/><br/>
+
+    <a href="{{ path('app_customer_index') }}">Show All Customer</a>&nbsp;&nbsp;&nbsp;
+    <a href="{{ path('app_car_index') }}">Show All Cars</a>&nbsp;
+    <a href="{{ path('homepage') }}">Main</a>
+{% endblock %}

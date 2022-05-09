@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Car{% endblock %}
+
+{% block body %}
+    <h1>Car</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Customer Name</th>
+                <td>{{ car.customer.name}}</td>
+            </tr>
+            <tr></tr><tr></tr><tr></tr>
+            <tr>
+                <th>Movil Customer</th>
+                <td>{{ car.customer.telNumber }}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <th>RegPlate</th>
+                <td>{{ car.regPlate }}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <th>ChasisNum</th>
+                <td>{{ car.chasisNum }}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ car.brand }}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ car.model }}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <th>EngineType</th>
+                <td>{{ car.engineType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br/><br/>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Worksheet Number</th>
+            <th></th>
+            <th>Description</th>
+            <th></th>
+            <th>Active</th>
+            <th></th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for worksheet in worksheets %}
+            <tr>
+                <td>{{ worksheet.id }}</td>
+                <td></td>
+                <td>{{ worksheet.description }}</td>
+                <td></td>
+                {%if worksheet.isActive == 1%}
+                    <td>The car is in Cury Garage</td>
+                {% else%}
+                    <td>The car isn't in Cury Garage</td>
+                {% endif %}
+                <td></td>
+                <td>
+                    <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br/><br/>
+
+    <a href="{{ path('app_car_index') }}">back to list</a>&nbsp;
+
+    <a href="{{ path('app_car_edit', {'id': car.id}) }}">edit</a>&nbsp;
+
+    <a href="{{ path('app_worksheet_new', {'id': car.id })}}">Create new Worksheet</a>
+
+    <br/><br/>
+
+    {{ include('Car/_delete_form.html.twig') }}
+{% endblock %}
