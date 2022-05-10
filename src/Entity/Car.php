@@ -6,6 +6,7 @@ use App\Repository\CarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator as CustomAssert;
 
 /**
  * @ORM\Entity(repositoryClass=CarRepository::class)
@@ -21,21 +22,13 @@ class Car
 
     /**
      * @ORM\Column(type="string", length=7)
-     * @Assert\NotBlank()
-     * @Assert\Length (
-     *      min = 7,
-     *      max = 7,
-     *      )
+     * @CustomAssert\ValidRegPlate(mode="loose")
      */
     private $regPlate;
 
     /**
      * @ORM\Column(type="string", length=17, unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Length (
-     *      min = 17,
-     *      max = 17,
-     *      )
+     * @CustomAssert\ValidNumChasis(mode="loose")
      */
     private $chasisNum;
 

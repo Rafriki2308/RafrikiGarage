@@ -6,6 +6,7 @@ use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator as CustomAssert;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
@@ -45,10 +46,7 @@ class Customer
     /**
      * @ORM\Column(type="string", length=9, unique=true)
      * @Assert\NotBlank()
-     * @Assert\Length(
-     *      min = 9,
-     *      max = 9,
-     *      )
+     * @CustomAssert\ValidIdCard(mode="loose")
      *
      */
     private $idCard;
