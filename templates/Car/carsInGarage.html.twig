@@ -1,11 +1,4 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}RafrikiGarage{% endblock %}
-
 {% block body %}
     <h1>Cars In Garage</h1>
-
     {{ include('Car/index.html.twig') }}
-
-    &nbsp;<a href="{{ path('app_car_index') }}">Show All Cars</a>
 {% endblock %}
