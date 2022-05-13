@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Worksheet{% endblock %}
+{% block title %}Nueva Hoja de Trabajo{% endblock %}
 
 {% block body %}
-    <h1>Create new Worksheet</h1>
+    <br/>
+    <h1>Crear una Hoja de Trabajo</h1>
+    <br/>
 
     {{ include('Worksheet/_form.html.twig') }}
-
-    <a href="{{ path('app_worksheet_index') }}">back to list</a>
+    <br/>
+    <a href="{{ path('homepage') }}">
+        <button type="button">Volver a la Lista</button>
+    </a>
 {% endblock %}

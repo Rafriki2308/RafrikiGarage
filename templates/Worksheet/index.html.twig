@@ -1,20 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Worksheet index{% endblock %}
+{% block title %}Indice Hoja de Trabajo{% endblock %}
 
 {% block body %}
-    <h1>Worksheet index</h1>
+    <br/>
+    <h1>Indice Hojas de Trabajo</h1>
+    <br/>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Worksheet Number</th>
+                <th>Número Hoja de Trabajo</th>
                 <th></th>
-                <th>Registration Plate</th>
+                <th>Matricula</th>
                 <th></th>
-                <th>Description</th>
-                <th></th>
-                <th>actions</th>
+                <th>Descripción</th>
+                <th><img id="tools" src="/assets/tools3.jpg"/></th>
             </tr>
         </thead>
         <tbody>
@@ -25,23 +26,16 @@
                 <td>{{ worksheet.car.regPlate }}</td>
                 <td></td>
                 <td>{{ worksheet.description }}</td>
-                <td></td>
                 <td>
-                    <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">show</a>&nbsp;
-                    <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">edit</a>
+                    <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>&nbsp;
+                    <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">No se han encontrado hojas de trabajo</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <br/><br/>
-
-    <a href="{{ path('app_customer_index') }}">Show All Customer</a>&nbsp;&nbsp;&nbsp;
-    <a href="{{ path('app_car_index') }}">Show All Cars</a>&nbsp;
-    <a href="{{ path('homepage') }}">Main</a>
 {% endblock %}

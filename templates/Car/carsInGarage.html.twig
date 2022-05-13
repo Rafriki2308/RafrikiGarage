@@ -1,4 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Indice Vehículos{% endblock %}
+
 {% block body %}
-    <h1>Cars In Garage</h1>
-    {{ include('Car/index.html.twig') }}
+
+    <div className="col-12 col-sm-2 col-md-2" id="moviesContainer" >
+        {% for worksheet in worksheets %}
+                <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">
+                    <div className='card'>
+                        <div className='imgBx'>
+                            <img id="tools" src="{{ asset('uploads/pictures/' ~ worksheet.car.pictureCar) }}"/>
+                        </div>
+                        <div className='details'>
+                            <p>{{ worksheet.car.regPlate }}</p>
+                        </div>
+                    </div>
+                </a>
+        {% else %}
+            <tr>
+                <td colspan="8">No se han encontrado vehículos</td>
+            </tr>
+        {% endfor %}
+    </div>
 {% endblock %}

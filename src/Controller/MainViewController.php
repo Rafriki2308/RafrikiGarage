@@ -18,8 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
-
-
+use App\Service\FileUploader;
 
 class MainViewController extends AbstractController
 {
@@ -28,15 +27,15 @@ class MainViewController extends AbstractController
      * @Route("/", name="homepage", methods={"GET"})
      */
     public function carInGarage(
-        CarRepository $carRepository,
+        WorksheetRepository $worksheetRepository,
         MainViewControllerManager $mainViewControllerManager
     ): Response
     {
-        $carsRaw = $carRepository->findAll();
-        $carsInGarage = $mainViewControllerManager->checkCarIsIn($carsRaw);
+        $worksheetsRaw = $worksheetRepository->findAll();
+        $carsInGarage = $mainViewControllerManager->checkCarIsIn($worksheetsRaw);
 
         return $this->render('Car/carsInGarage.html.twig', [
-            'cars' => $carsInGarage,
+            'worksheets' => $carsInGarage,
         ]);
     }
 
@@ -75,7 +74,7 @@ class MainViewController extends AbstractController
     /**
      * @Route("/worksheet/show_all", name="app_worksheet_index", methods={"GET"})
      */
-    public function index(
+    public function indexWorksheet(
         WorksheetRepository $worksheetRepository,
         MainViewControllerManager $mainViewControllerManager
     ): Response
@@ -91,7 +90,7 @@ class MainViewController extends AbstractController
     /**
      * @Route("/new/customer", name="app_customer_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, CustomerRepository $customerRepository): Response
+    public function newCustomer(Request $request, CustomerRepository $customerRepository): Response
     {
         $customer = new Customer();
         $form = $this->createForm(CustomerType::class, $customer);
@@ -116,6 +115,7 @@ class MainViewController extends AbstractController
         Request $request,
         CarRepository $carRepository,
         CustomerRepository $customerRepository,
+        FileUploader $fileUploader,
         $id
     ): Response
     {
@@ -128,6 +128,13 @@ class MainViewController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $brochureFile = $form->get('pictureCar')->getData();
+            if ($brochureFile) {
+                $brochureFileName = $fileUploader->upload($brochureFile);
+                $car->setPictureCar($brochureFileName);
+            }
+
             $carRepository->addCar($car);
 
             return $this->redirectToRoute('app_car_index', [], Response::HTTP_SEE_OTHER);
@@ -195,7 +202,7 @@ class MainViewController extends AbstractController
     /**
      * @Route("show/worksheet/{id}", name="app_worksheet_show", methods={"GET"})
      */
-    public function show(Worksheet $worksheet): Response
+    public function showWorksheet(Worksheet $worksheet): Response
     {
         return $this->render('Worksheet/show.html.twig', [
             'worksheet' => $worksheet,
@@ -247,7 +254,7 @@ class MainViewController extends AbstractController
     /**
      * @Route("customer/{id}/edit", name="app_customer_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Customer $customer, CustomerRepository $customerRepository): Response
+    public function editCustomer(Request $request, Customer $customer, CustomerRepository $customerRepository): Response
     {
         $form = $this->createForm(CustomerType::class, $customer);
         $form->handleRequest($request);
@@ -267,12 +274,23 @@ class MainViewController extends AbstractController
     /**
      * @Route("car/{id}/edit", name="app_car_edit", methods={"GET", "POST"})
      */
-    public function editCar(Request $request, Car $car, CarRepository $carRepository): Response
+    public function editCar(
+        Request $request,
+        Car $car,
+        CarRepository $carRepository,
+        FileUploader $fileUploader
+    ): Response
     {
         $form = $this->createForm(CarType::class, $car);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $brochureFile = $form->get('pictureCar')->getData();
+            if ($brochureFile) {
+                $brochureFileName = $fileUploader->upload($brochureFile);
+                $car->setPictureCar($brochureFileName);
+            }
             $carRepository->addCar($car);
 
             return $this->redirectToRoute('app_car_index', [], Response::HTTP_SEE_OTHER);
@@ -310,7 +328,7 @@ class MainViewController extends AbstractController
     /**
      * @Route("customer/{id}/delete", name="app_customer_delete", methods={"POST"})
      */
-    public function delete(Request $request, Customer $customer, CustomerRepository $customerRepository): Response
+    public function deleteCustomer(Request $request, Customer $customer, CustomerRepository $customerRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$customer->getId(), $request->request->get('_token'))) {
             $customerRepository->remove($customer);

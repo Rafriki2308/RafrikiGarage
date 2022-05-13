@@ -1,44 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Car{% endblock %}
+{% block title %}Detalle de Vehículo{% endblock %}
 
 {% block body %}
-    <h1>Car</h1>
-
+    <br/>
+    <h1>Detalle de Vehículo</h1>
+    <br/>
     <table class="table">
         <tbody>
             <tr>
-                <th>Customer Name</th>
+                <th>Nombre Cliente</th>
                 <td>{{ car.customer.name}}</td>
             </tr>
             <tr></tr><tr></tr><tr></tr>
             <tr>
-                <th>Movil Customer</th>
+                <th>Móvil Cliente</th>
                 <td>{{ car.customer.telNumber }}</td>
             </tr>
             <tr></tr>
             <tr>
-                <th>RegPlate</th>
+                <th>Matrícula</th>
                 <td>{{ car.regPlate }}</td>
             </tr>
             <tr></tr>
             <tr>
-                <th>ChasisNum</th>
+                <th>Número Chasis</th>
                 <td>{{ car.chasisNum }}</td>
             </tr>
             <tr></tr>
             <tr>
-                <th>Brand</th>
+                <th>Marca</th>
                 <td>{{ car.brand }}</td>
             </tr>
             <tr></tr>
             <tr>
-                <th>Model</th>
+                <th>Modelo</th>
                 <td>{{ car.model }}</td>
             </tr>
             <tr></tr>
             <tr>
-                <th>EngineType</th>
+                <th>Tipo Motor</th>
                 <td>{{ car.engineType }}</td>
             </tr>
         </tbody>
@@ -49,49 +50,49 @@
     <table>
         <thead>
         <tr>
-            <th>Worksheet Number</th>
-            <th></th>
-            <th>Description</th>
-            <th></th>
-            <th>Active</th>
-            <th></th>
-            <th>actions</th>
+            <th>Número Hoja Trabajo</th>
+            <th></th><th></th><th></th>
+            <th>Descripción</th>
+            <th></th><th></th><th></th>
+            <th>Esta Dentro del Taller</th>
+            <th></th><th></th><th></th>
+            <th><img id="tools" src="/assets/tools3.jpg"/></th>
         </tr>
         </thead>
         <tbody>
         {% for worksheet in worksheets %}
             <tr>
                 <td>{{ worksheet.id }}</td>
-                <td></td>
+                <td></td><td></td><td></td>
                 <td>{{ worksheet.description }}</td>
-                <td></td>
+                <td></td><td></td><td></td>
                 {%if worksheet.isActive == 1%}
-                    <td>The car is in Cury Garage</td>
+                    <td>El Vehículo Esta en el Taller</td>
                 {% else%}
-                    <td>The car isn't in Cury Garage</td>
+                    <td>El Vehículo no Esta en el Taller</td>
                 {% endif %}
-                <td></td>
+                <td></td><td></td><td></td>
                 <td>
-                    <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">show</a>
+                    <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">No se han encotrado registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <br/><br/>
-
-    <a href="{{ path('app_car_index') }}">back to list</a>&nbsp;
-
-    <a href="{{ path('app_car_edit', {'id': car.id}) }}">edit</a>&nbsp;
-
-    <a href="{{ path('app_worksheet_new', {'id': car.id })}}">Create new Worksheet</a>
-
-    <br/><br/>
-
+    <br/>
     {{ include('Car/_delete_form.html.twig') }}
+    <br/>
+    <a href="{{ path('app_car_edit', {'id': car.id}) }}">
+        <button type="button">Editar</button>
+    </a>&nbsp;
+    <a href="{{ path('app_worksheet_new', {'id': car.id })}}">
+        <button type="button">Crear Nueva Hoja Trabajo</button>
+    </a>
+    </br>
+
 {% endblock %}

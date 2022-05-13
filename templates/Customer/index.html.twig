@@ -1,24 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Customer index{% endblock %}
+{% block title %}Indice de Clientes{% endblock %}
 
 {% block body %}
-    <h1>Customer index</h1>
+    <br/>
+    <h1>Indice Clientes</h1>
+    <br/>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Nombre</th>
                 <th></th><th></th>
-                <th>Surnames</th>
+                <th>Apellidos</th>
                 <th></th><th></th>
-                <th>IdCard</th>
+                <th>Identificación</th>
                 <th></th><th></th>
-                <th>TelNumber</th>
+                <th>Número Teléfono</th>
                 <th></th><th></th>
                 <th>EMail</th>
-                <th></th><th></th>
-                <th>actions</th>
+                <th><img id="tools" src="/assets/tools3.jpg"/></th>
             </tr>
         </thead>
         <tbody>
@@ -33,15 +34,15 @@
                 <td>{{ customer.telNumber }}</td>
                 <td></td><td></td>
                 <td>{{ customer.eMail }}</td>
-                <td></td><td></td>
                 <td>
-                    <a href="{{ path('app_customer_show', {'id': customer.id}) }}">show</a>
-                    <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">edit</a>
+                    <a href="{{ path('app_customer_show', {'id': customer.id}) }}">Detalle</a>
+                    <br/>
+                    <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">No se han encontrado Clientes</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -49,8 +50,7 @@
 
     <br/><br/>
 
-    <a href="{{ path('app_customer_new') }}">Create new</a>&nbsp;&nbsp;&nbsp;
-    <a href="{{ path('app_car_index') }}">Show All Cars</a>&nbsp;&nbsp;&nbsp;
-    <a href="{{ path('app_worksheet_index') }}">Show All Worksheets</a>&nbsp;
-    <a href="{{ path('homepage') }}">Main</a>
+    <a href="{{ path('app_customer_new') }}">
+        <button type="button">Crear Nuevo Cliente</button>
+    </a>
 {% endblock %}

@@ -35,20 +35,17 @@ class MainViewControllerManager
         return true;
     }
 
-    public function checkCarIsIn($cars)
+    public function checkCarIsIn($worksheets)
     {
-        $i=0;
-        foreach ($cars as $car) {
-            $worksheets = $car->getWorksheets();
-            $isActive = $this->checkWorksheetIsActive($worksheets);
+        foreach ($worksheets as $index=>$worksheet) {
+            $isActive = $isActive = $worksheet->getIsActive();
 
             if (!$isActive) {
-                unset($cars[$i]);
+                unset($worksheets[$index]);
             }
-            $i++;
         }
 
-        return $cars;
+        return $worksheets;
     }
 
 }

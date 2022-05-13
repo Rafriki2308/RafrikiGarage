@@ -1,36 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Worksheet{% endblock %}
+{% block title %}Detalle Hoja de Trabajo{% endblock %}
 
 {% block body %}
-    <h1>Worksheet</h1>
-
+    <br/>
+    <h1>Detalle Hoja de Trabajo</h1>
+    <br/>
     <table class="table">
         <tbody>
             <tr>
-                <th>WorkSheet Number</th>
+                <th>Número Hoja de Trabajo</th>
                 <td>{{ worksheet.id }}</td>
             </tr>
             <tr></tr><tr></tr>
             <tr>
-                <th>Registration Plate</th>
+                <th>Placa de Matrícula</th>
                 <td>{{ worksheet.car.regPlate }}</td>
             </tr>
             <tr></tr><tr></tr>
             <tr>
-                <th>Description</th>
+                <th>Descripción</th>
                 <td>{{ worksheet.description }}</td>
             </tr>
         </tbody>
     </table>
 
     <br/><br/>
+    {{ include('Worksheet/_delete_form.html.twig') }}
+    </br>
 
-    <a href="{{ path('app_worksheet_index') }}">back to list</a>&nbsp;
+    <a href="{{ path('app_worksheet_index') }}">
+        <button type="button">Volver a la Lista</button>
+    </a>&nbsp;
 
-    <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">edit</a>
+    <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">
+        <button type="button">Editar</button>
+    </a>
 
     <br/><br/>
 
-    {{ include('Worksheet/_delete_form.html.twig') }}
+
 {% endblock %}

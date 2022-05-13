@@ -1,26 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Customer{% endblock %}
+{% block title %}Detalle de Clientes{% endblock %}
 
 {% block body %}
-    <h1>Customer</h1>
-
+    <br/>
+    <h1>Detalle de Cliente</h1>
+    <br/>
     <table class="table">
         <tbody>
             <tr>
-                <th>Name</th>
+                <th>Nombre</th>
                 <td>{{ customer.name }}</td>
             </tr>
             <tr>
-                <th>Surnames</th>
+                <th>Apellidos</th>
                 <td>{{ customer.surnames }}</td>
             </tr>
             <tr>
-                <th>IdCard</th>
+                <th>Identificación</th>
                 <td>{{ customer.idCard }}</td>
             </tr>
             <tr>
-                <th>TelNumber</th>
+                <th>Número de Teléfono</th>
                 <td>{{ customer.telNumber }}</td>
             </tr>
             <tr>
@@ -35,39 +36,39 @@
     <table>
         <thead>
         <tr>
-            <th>RegPlate</th>
-            <th></th>
-            <th>ChasisNum</th>
-            <th></th>
-            <th>Brand</th>
-            <th></th>
-            <th>Model</th>
-            <th></th>
-            <th>EngineType</th>
-            <th></th>
-            <th>actions</th>
+            <th>Placa de Matricula</th>
+            <th></th><th></th>
+            <th>Número Bastidor</th>
+            <th></th><th></th>
+            <th>Marca</th>
+            <th></th><th></th>
+            <th>Modelo</th>
+            <th></th><th></th>
+            <th>Tipo Motor</th>
+            <th></th><th></th>
+            <th><img id="tools" src="/assets/tools3.jpg"/></th>
         </tr>
         </thead>
         <tbody>
         {% for car in cars %}
             <tr>
                 <td>{{ car.regPlate }}</td>
-                <td></td>
+                <td>&nbsp;</td><td>&nbsp;</td>
                 <td>{{ car.chasisNum }}</td>
-                <td></td>
+                <td></td><td></td>
                 <td>{{ car.brand }}</td>
-                <td></td>
+                <td></td><td></td>
                 <td>{{ car.model }}</td>
-                <td></td>
+                <td></td><td></td>
                 <td>{{ car.engineType }}</td>
-                <td></td>
+                <td></td><td></td>
                 <td>
-                    <a href="{{ path('app_car_show', {'id': car.id}) }}">show</a>
+                    <a href="{{ path('app_car_show', {'id': car.id}) }}">Detalle</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">No se han encontrado clientes</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -75,13 +76,19 @@
 
     <br/><br/>
 
-    <a href="{{ path('app_customer_index') }}">back to list</a>&nbsp;
-
-    <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">edit</a>&nbsp;
-
-    <a href="{{ path('app_car_new', {'id': customer.id })}}">Create new Car</a>
-
-    <br/><br/>
-
     {{ include('Customer/_delete_form.html.twig') }}
+    <br/>
+    <a href="{{ path('app_customer_index') }}">
+        <button type="button">Volver a la Lista</button>
+    </a>&nbsp;
+
+    <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">
+        <button type="button">Editar</button>
+    </a>&nbsp;
+
+    <a href="{{ path('app_car_new', {'id': customer.id })}}">
+        <button type="button">Crear Nuevo Coche</button>
+    </a>
+
+
 {% endblock %}

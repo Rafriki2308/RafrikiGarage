@@ -2,6 +2,7 @@
 
 namespace App\Validator;
 
+use PhpParser\Node\Scalar\String_;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -9,6 +10,7 @@ use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
 class ValidIdCardValidator extends ConstraintValidator
 {
+    private $characterIdCard = "TRWAGMYFPDXBNJZSQVHLCKE";
 
     public function checkIdCardCharacter($value): bool
     {
@@ -19,7 +21,7 @@ class ValidIdCardValidator extends ConstraintValidator
             return false;
         }
 
-        if (!(substr("TRWAGMYFPDXBNJZSQVHLCKE", $numbers%23, 1) ==
+        if (!(substr($this->characterIdCard, $numbers%23, 1) ==
             $character && strlen($character) == 1 && strlen ($numbers) == 8 )){
             return false;
         }
@@ -33,27 +35,17 @@ class ValidIdCardValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, ValidIdCard::class);
         }
 
-        // custom constraints should ignore null and empty values to allow
-        // other constraints (NotBlank, NotNull, etc.) to take care of that
         if (null === $value || '' === $value) {
             return;
         }
 
         if (!is_string($value)) {
-            // throw this exception if your validator cannot handle the passed type so that it can be marked as invalid
+
             throw new UnexpectedValueException($value, 'string');
-
-            // separate multiple types using pipes
-            // throw new UnexpectedValueException($value, 'string|int');
-        }
-
-        // access your configuration options like this:
-        if ('strict' === $constraint->mode) {
-            // ...
         }
 
         if (!preg_match('/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i', $value, $matches)) {
-            // the argument must be a string or an object implementing __toString()
+
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ string }}', $value)
                 ->addViolation();
@@ -65,4 +57,5 @@ class ValidIdCardValidator extends ConstraintValidator
                 ->addViolation();
         }
     }
+
 }

@@ -69,6 +69,14 @@ class Car
     private $engineType;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please Insert a Valid File")
+     * @Assert\File(mimeTypes={"image/jpeg"})
+     */
+    private $pictureCar;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="car")
      */
     private $customer;
@@ -90,7 +98,8 @@ class Car
         $chasisNum = null,
         $brand = null,
         $model = null,
-        $engineType = null
+        $engineType = null,
+        $pictureCar = null
     )
     {
         $this->regPlate = $regPlate;
@@ -98,6 +107,7 @@ class Car
         $this->brand = $brand;
         $this->model = $model;
         $this->engineType = $engineType;
+        $this->pictureCar = $pictureCar;
         $this->worksheets = new ArrayCollection();
     }
 
@@ -165,6 +175,17 @@ class Car
 
         return $this;
     }
+
+    public function getPictureCar()
+    {
+        return $this->pictureCar;
+    }
+
+    public function setPictureCar($pictureCar): void
+    {
+        $this->pictureCar = $pictureCar;
+    }
+
 
     public function getCustomer()
     {

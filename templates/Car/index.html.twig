@@ -1,27 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Car index{% endblock %}
+{% block title %}Indice Vehículos{% endblock %}
 
 {% block body %}
-    <h1>Car index</h1>
+    <br/>
+    <h1>Indice de Vehículos</h1>
+    <br/>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Customer Name</th>
+                <th>Nombre Cliente</th>
                 <th></th><th></th>
-                <th>RegPlate</th>
+                <th>Matricula</th>
                 <th></th><th></th>
-                <th>ChasisNum</th>
+                <th>Número Chasis</th>
                 <th></th><th></th>
-                <th>Brand</th>
+                <th>Marca</th>
                 <th></th><th></th>
-                <th>Model</th>
+                <th>Modelo</th>
                 <th></th><th></th>
-                <th>EngineType</th>
-                <th></th><th></th>
-                <th>actions</th>
-            </tr>
+                <th>Tipo Motor</th>
+                <th><img id="tools" src="/assets/tools3.jpg"/></th>
+           </tr>
         </thead>
         <tbody>
         {% for car in cars %}
@@ -41,23 +42,18 @@
                 <td>{{ car.model }}</td>
                 <td></td><td></td>
                 <td>{{ car.engineType }}</td>
-                <td></td><td></td>
+                <td><img id="tools" src="{{ asset('uploads/pictures/' ~ car.pictureCar) }}"/></td>
                 <td>
-                    <a href="{{ path('app_car_show', {'id': car.id}) }}">show</a>
-                    <a href="{{ path('app_car_edit', {'id': car.id}) }}">edit</a>
+                    <a href="{{ path('app_car_show', {'id': car.id}) }}">Detalle</a>
+                    <br/>
+                    <a href="{{ path('app_car_edit', {'id': car.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">No se han encontrado vehículos</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <br/>
-
-    <a href="{{ path('app_customer_index') }}">Show All Customers</a>&nbsp;&nbsp;&nbsp;
-    <a href="{{ path('app_worksheet_index') }}">Show All Worksheets</a> &nbsp;
-    <a href="{{ path('homepage') }}">Main</a>
 {% endblock %}
