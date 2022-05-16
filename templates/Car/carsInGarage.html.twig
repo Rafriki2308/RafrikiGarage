@@ -4,22 +4,52 @@
 
 {% block body %}
 
-    <div className="col-12 col-sm-2 col-md-2" id="moviesContainer" >
+    <div class="grid-container">
+
+    {% for worksheet in worksheets %}
+    
+    <div class="location-listing">
+        <a class="location-title" href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">
+            {{ worksheet.car.regPlate }}
+        </a>
+      <div class="location-image">
+        <a href="#">
+            <img id="carHomepageImg" width="300" height="169" src="{{ asset('uploads/pictures/' ~ worksheet.car.pictureCar) }}" alt="san francisco">    
+        </a>
+      </div>
+    </div>
+    {% else %}
+        <tr>
+            <td colspan="8">No se han encontrado vehículos</td>
+        </tr>
+    {% endfor %}
+     </div>
+    
+    
+    
+    
+    
+    
+    
+    <!--
         {% for worksheet in worksheets %}
+        <div className="col-12 col-sm-2 col-md-2" id="moviesContainer" >
                 <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">
                     <div className='card'>
                         <div className='imgBx'>
-                            <img id="tools" src="{{ asset('uploads/pictures/' ~ worksheet.car.pictureCar) }}"/>
+                            <img id="carsImg" src="{{ asset('uploads/pictures/' ~ worksheet.car.pictureCar) }}"/>
                         </div>
                         <div className='details'>
                             <p>{{ worksheet.car.regPlate }}</p>
                         </div>
                     </div>
                 </a>
+        </div>
         {% else %}
             <tr>
                 <td colspan="8">No se han encontrado vehículos</td>
             </tr>
         {% endfor %}
-    </div>
+        -->
+    
 {% endblock %}

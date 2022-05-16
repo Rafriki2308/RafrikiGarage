@@ -30,7 +30,7 @@ class CarType extends AbstractType
             ])
             ->add('pictureCar', FileType::class, [
                 'label'=>'Ruta Foto',
-                'data_class' => null
+                'data_class' => null,
             ])
         ;
     }
