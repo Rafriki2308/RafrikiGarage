@@ -10,13 +10,15 @@
     
     <div class="location-listing">
         <a class="location-title" href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">
-            {{ worksheet.car.regPlate }}
+            <div>
+                <p>Hoja Trabajo: {{ worksheet.id }}</p>
+                <p>Matrícula: {{ worksheet.car.regPlate }}</p>
+            </div>
         </a>
-      <div class="location-image">
-        <a href="#">
-            <img id="carHomepageImg" width="300" height="169" src="{{ asset('uploads/pictures/' ~ worksheet.car.pictureCar) }}" alt="san francisco">    
-        </a>
-      </div>
+    <div class="location-image">
+        <img id="carHomepageImg" width="300" height="169" src="{{ asset('uploads/pictures/' ~ worksheet.car.pictureCar) }}" 
+        alt="El Vehículo no tiene Fotogrfía">    
+    </div>
     </div>
     {% else %}
         <tr>
@@ -24,32 +26,4 @@
         </tr>
     {% endfor %}
      </div>
-    
-    
-    
-    
-    
-    
-    
-    <!--
-        {% for worksheet in worksheets %}
-        <div className="col-12 col-sm-2 col-md-2" id="moviesContainer" >
-                <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">
-                    <div className='card'>
-                        <div className='imgBx'>
-                            <img id="carsImg" src="{{ asset('uploads/pictures/' ~ worksheet.car.pictureCar) }}"/>
-                        </div>
-                        <div className='details'>
-                            <p>{{ worksheet.car.regPlate }}</p>
-                        </div>
-                    </div>
-                </a>
-        </div>
-        {% else %}
-            <tr>
-                <td colspan="8">No se han encontrado vehículos</td>
-            </tr>
-        {% endfor %}
-        -->
-    
 {% endblock %}

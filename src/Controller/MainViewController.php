@@ -365,5 +365,25 @@ class MainViewController extends AbstractController
         return $this->redirectToRoute('app_worksheet_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    /**
+     * @Route("/worksheet/{id}/softDelete", name="app_worksheet_softDelete", methods={"POST"})
+     */
+    public function softDeleteWorksheet(
+        Request $request,
+        Worksheet $worksheet,
+        WorksheetRepository $worksheetRepository
+    ): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$worksheet->getId(), $request->request->get('_token'))) {
+            if($worksheet->getIsActive()){
+                $worksheet->setIsActive(false);
+                $worksheetRepository->add($worksheet);
+            }
+            
+        }
+
+        return $this->redirectToRoute('homepage', [], Response::HTTP_SEE_OTHER);
+    }
+
 }
 
