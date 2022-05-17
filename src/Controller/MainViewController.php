@@ -241,14 +241,19 @@ class MainViewController extends AbstractController
      * @Route("/search_worksheet/search", name="app_search_worksheet", methods={"POST"})
      *
      */
-    public function searchWorksheetByWorksheetNum(Request $request, WorksheetRepository $worksheetRepository, SerializerInterface $serializer)
+    public function searchWorksheetByWorksheetNum(
+        Request $request, 
+        WorksheetRepository $worksheetRepository
+        )
     {
         $worksheetNum = $request->request->get('isActive');
 
         $worksheet = $worksheetRepository->findOneWorksheetByWorksheetNum($worksheetNum);
-        $json = $serializer->serialize($worksheet, 'json');
+        
 
-        return new Response($json);
+        return $this->render('Worksheet/show.html.twig', [
+            'worksheet' => $worksheet,
+        ]);
     }
 
     /**
