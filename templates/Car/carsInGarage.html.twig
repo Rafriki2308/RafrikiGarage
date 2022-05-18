@@ -6,24 +6,24 @@
 
     <div class="grid-container">
 
-    {% for worksheet in worksheets %}
-    
-    <div class="location-listing">
-        <a class="location-title" href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">
-            <div>
-                <p>Hoja Trabajo: {{ worksheet.id }}</p>
-                <p>Matrícula: {{ worksheet.car.regPlate }}</p>
+        {% for worksheet in worksheets %}
+
+            <div class="location-listing">
+                <a class="location-title" href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">
+                    <div>
+                        <p>Hoja Trabajo: {{ worksheet.id }}</p>
+                        <p>Matrícula : {{ worksheet.car.regPlate }}</p>
+                    </div>
+                </a>
+                <div class="location-image">
+                    <img id="carHomepageImg" src="{{ asset('uploads/pictures/' ~ worksheet.car.pictureCar) }}"
+                         alt="El Vehículo no tiene Fotogrfía">
+                </div>
             </div>
-        </a>
-    <div class="location-image">
-        <img id="carHomepageImg" width="300" height="169" src="{{ asset('uploads/pictures/' ~ worksheet.car.pictureCar) }}" 
-        alt="El Vehículo no tiene Fotogrfía">    
+        {% else %}
+            <tr>
+                <td colspan="8">No se han encontrado vehículos</td>
+            </tr>
+        {% endfor %}
     </div>
-    </div>
-    {% else %}
-        <tr>
-            <td colspan="8">No se han encontrado vehículos</td>
-        </tr>
-    {% endfor %}
-     </div>
 {% endblock %}

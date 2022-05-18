@@ -1,5 +1,4 @@
-<form method="post" action="{{ path('app_worksheet_softDelete', {'id': worksheet.id}) }}" 
-    onsubmit="return confirm('¿Estas seguro que quieres darle salida al vehículo?');">
+<form method="post" action="{{ path('app_worksheet_softDelete', {'id': worksheet.id}) }}" onsubmit="return confirm('Esta Seguro que desea borrar este elemento?');">
     <br/>
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ worksheet.id) }}">
     <button class="btn">Borrar</button>

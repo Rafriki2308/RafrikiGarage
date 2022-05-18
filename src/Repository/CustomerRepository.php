@@ -73,13 +73,28 @@ class CustomerRepository extends ServiceEntityRepository
     * @return Customer|null Returns a Customer objects
     * @throws \Doctrine\ORM\NonUniqueResultException
     */
-    public function findOneCustomerById($value): ?Customer
+        public function findOneCustomerById($value)
+        {
+            return $this->createQueryBuilder('c')
+                ->andWhere('c.id = :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getOneOrNullResult()
+            ;
+        }
+
+    /**
+     * @param $value
+     * @return Customer|null Returns a Customer objects
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneCustomerByIdCard($value)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.id = : val')
+            ->andWhere('c.idCard = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
-        ;
+            ;
     }
 }

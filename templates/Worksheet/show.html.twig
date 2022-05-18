@@ -15,7 +15,11 @@
             <tr></tr><tr></tr>
             <tr>
                 <th>Placa de Matrícula</th>
-                <td>{{ worksheet.car.regPlate }}</td>
+                <td>
+                    <a href="{{ path('app_car_show', {'id': worksheet.car.id}) }}">
+                    {{ worksheet.car.regPlate }}
+                    </a>
+                </td>
             </tr>
             <tr></tr><tr></tr>
             <tr>

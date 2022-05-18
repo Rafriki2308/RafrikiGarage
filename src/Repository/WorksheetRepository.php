@@ -68,7 +68,7 @@ class WorksheetRepository extends ServiceEntityRepository
     public function findOneWorksheetByWorksheetNum($value): ?Worksheet
     {
         return $this->createQueryBuilder('w')
-            ->andWhere('w.isActive = :val')
+            ->andWhere('w.id = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult();

@@ -83,4 +83,30 @@ class CarRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    /**
+     * @return Car Returns a Car object
+     */
+    public function findOneCarByRegPlate($value): ?Car
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.regPlate = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
+    /**
+     * @return Car Returns a Car object
+     */
+    public function findOneCarByChasisNum($value): ?Car
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.chasisNum = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
 }

@@ -210,48 +210,102 @@ class MainViewController extends AbstractController
     }
 
     /**
-     * @Route("/search_car/search", name="app_search_car", methods={"POST"})
+     * @Route("/search_car_ById", name="app_search_car_ById", methods={"GET"})
      *
      */
-    public function searchCarByRegPlate(Request $request,CarRepository $carRepository, SerializerInterface $serializer)
+    public function searchCarById(Request $request,CarRepository $carRepository)
     {
-        $regPlate = $request->request->get('regPlate');
+        $id = $request->query->get("id");
 
-        $car = $carRepository->findOneCarBySomeField($regPlate);
-        $json = $serializer->serialize($car, 'json');
+        $car = $carRepository->findOneCarById($id);
 
-        return new Response($json);
+        $worksheets = $car->getWorksheets();
+
+        return $this->renderForm('Car/show.html.twig', [
+            'car' => $car,
+            'worksheets' => $worksheets
+        ]);
     }
 
     /**
-     * @Route("/search_customer/search", name="app_search_customer", methods={"POST"})
+     * @Route("/search_car_ByRegPlate", name="app_search_car_ByRegPlate", methods={"GET"})
      *
      */
-    public function searchCustomerByidCard(Request $request, CustomerRepository $customerRepository, SerializerInterface $serializer)
+    public function searchCarByRegPlate(Request $request,CarRepository $carRepository)
     {
-        $idCard = $request->request->get('id');
+        $regPlate = $request->query->get("regPlate");
 
-        $customer = $customerRepository->findOneCustomerByIdCard($idCard);
-        $json = $serializer->serialize($customer, 'json');
+        $car = $carRepository->findOneCarByRegPlate($regPlate);
 
-        return new Response($json);
+        $worksheets = $car->getWorksheets();
+
+        return $this->renderForm('Car/show.html.twig', [
+            'car' => $car,
+            'worksheets' => $worksheets
+        ]);
     }
 
     /**
-     * @Route("/search_worksheet/search", name="app_search_worksheet", methods={"POST"})
+     * @Route("/search_car_ByChasisNum", name="app_search_car_ByChasisNum", methods={"GET"})
      *
      */
-    public function searchWorksheetByWorksheetNum(
-        Request $request, 
-        WorksheetRepository $worksheetRepository
-        )
+    public function searchCarByChasisNum(Request $request,CarRepository $carRepository)
     {
-        $worksheetNum = $request->request->get('isActive');
+        $chasisNum = $request->query->get("chasisNum");
+
+        $car = $carRepository->findOneCarByChasisNum($chasisNum);
+
+        $worksheets = $car->getWorksheets();
+
+        return $this->renderForm('Car/show.html.twig', [
+            'car' => $car,
+            'worksheets' => $worksheets
+        ]);
+    }
+
+    /**
+     * @Route("/searchByID_customer", name="app_searchById_customer", methods={"GET", "POST"})
+     *
+     */
+    public function searchCustomerById(Request $request, CustomerRepository $customerRepository)
+    {
+        $idForm = $request->query->get("id");
+        $customer = $customerRepository->findOneCustomerById($idForm);
+        $cars = $customer->getCars();
+
+        return $this->renderForm('Customer/show.html.twig', [
+            'customer' => $customer,
+            'cars' => $cars
+        ]);
+    }
+
+    /**
+     * @Route("/searchByIdCard_customer", name="app_searchByIdCard_customer", methods={"GET", "POST"})
+     *
+     */
+    public function searchCustomerByIdCard(Request $request, CustomerRepository $customerRepository)
+    {
+        $idForm = $request->query->get("idCard");
+        $customer = $customerRepository->findOneCustomerByIdCard($idForm);
+        $cars = $customer->getCars();
+
+        return $this->renderForm('Customer/show.html.twig', [
+            'customer' => $customer,
+            'cars' => $cars
+        ]);
+    }
+
+    /**
+     * @Route("/search_worksheet", name="app_search_worksheet_ByWorksheetNum", methods={"GET"})
+     *
+     */
+    public function searchWorksheetByWorksheetNum(Request $request, WorksheetRepository $worksheetRepository)
+    {
+        $worksheetNum = $request->query->get('worksheetNum');
 
         $worksheet = $worksheetRepository->findOneWorksheetByWorksheetNum($worksheetNum);
-        
 
-        return $this->render('Worksheet/show.html.twig', [
+        return $this->renderForm('Worksheet/show.html.twig', [
             'worksheet' => $worksheet,
         ]);
     }
@@ -384,7 +438,6 @@ class MainViewController extends AbstractController
                 $worksheet->setIsActive(false);
                 $worksheetRepository->add($worksheet);
             }
-            
         }
 
         return $this->redirectToRoute('homepage', [], Response::HTTP_SEE_OTHER);
