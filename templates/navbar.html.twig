@@ -1,49 +1,49 @@
 <nav class="navbar navbar-expand-lg" id='nav'>
-    <a class="navbar-brand" href="#">Logo Navegacion</a>
+    <a class="navbar-brand" href="#">
+        <img id="logoImg" src="assets/Logo.jpg">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('homepage') }}">Home<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Clientes
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ path('app_customer_index') }}">Mostrar Todos Clientes</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ path('app_customer_new') }}">Crear Nuevo Cliente</a>
-                    <a class="dropdown-item" href="{{ path('search_customer') }}">Buscar Un Cliente</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Vehículos
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ path('app_car_index') }}">Mostrar Todos los Coches</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ path('search_car') }}">Buscar un Vehículo</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hojas de Trabajo
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ path('app_worksheet_index') }}">Todas las Hojas de Trabajo</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ path('search_worksheet') }}">Buscar Hoja de Trabajo</a>
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
-            <button class="btn my-2 my-sm-0" type="submit">Buscar</button>
-        </form>
+        <div id="centerMenu">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('homepage') }}">Inicio<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Clientes
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('app_customer_index') }}">Mostrar Todos Clientes</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('app_customer_new') }}">Crear Nuevo Cliente</a>
+                        <a class="dropdown-item" href="{{ path('search_customer') }}">Buscar Un Cliente</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Vehículos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('app_car_index') }}">Mostrar Todos los Coches</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('search_car') }}">Buscar un Vehículo</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hojas de Trabajo
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('app_worksheet_index') }}">Todas las Hojas de Trabajo</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('search_worksheet') }}">Buscar Hoja de Trabajo</a>
+                    </div>
+                </li>
+            </ul>
+        </div>    
     </div>
 </nav>
