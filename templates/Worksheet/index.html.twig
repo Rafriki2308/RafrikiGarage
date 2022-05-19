@@ -22,8 +22,12 @@
         {% for worksheet in worksheets %}
             <tr>
                 <td>{{ worksheet.id }}</td>
-                <td></td>
-                <td>{{ worksheet.car.regPlate }}</td>
+                {% if worksheet.car == null%}
+                    <td>Este Vehículo ha sido eliminado</td>
+                {% else %}
+                    <td>{{ worksheet.car.regPlate }}</td>
+                {% endif %}
+
                 <td></td>
                 <td>{{ worksheet.description }}</td>
                 <td>

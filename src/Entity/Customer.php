@@ -46,7 +46,6 @@ class Customer
     /**
      * @ORM\Column(type="string", length=9, unique=true)
      * @Assert\NotBlank()
-     * @CustomAssert\ValidIdCard(mode="loose")
      *
      */
     private $idCard;
@@ -72,6 +71,11 @@ class Customer
     private $eMail;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isActive;
+
+    /**
      * @ORM\OneToMany(targetEntity="Car", mappedBy="customer")
      */
     private $cars;
@@ -88,7 +92,8 @@ class Customer
         $surnames = null,
         $idCard = null,
         $telNumber = null,
-        $eMail = null
+        $eMail = null,
+        $isActive = true
     )
     {
         $this->name = $name;
@@ -96,6 +101,7 @@ class Customer
         $this->idCard = $idCard;
         $this->telNumber = $telNumber;
         $this->eMail = $eMail;
+        $this->isActive = $isActive;
         $this->cars = new ArrayCollection();
     }
 
@@ -162,6 +168,16 @@ class Customer
         $this->eMail = $eMail;
 
         return $this;
+    }
+
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive($isActive): void
+    {
+        $this->isActive = $isActive;
     }
 
     public function getCars()

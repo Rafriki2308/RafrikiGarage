@@ -77,7 +77,13 @@ class Car
     private $pictureCar;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isActive;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="car")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $customer;
 
@@ -99,7 +105,8 @@ class Car
         $brand = null,
         $model = null,
         $engineType = null,
-        $pictureCar = null
+        $pictureCar = null,
+        $isActive = true
     )
     {
         $this->regPlate = $regPlate;
@@ -108,6 +115,7 @@ class Car
         $this->model = $model;
         $this->engineType = $engineType;
         $this->pictureCar = $pictureCar;
+        $this->isActive = $isActive;
         $this->worksheets = new ArrayCollection();
     }
 
@@ -186,6 +194,15 @@ class Car
         $this->pictureCar = $pictureCar;
     }
 
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive($isActive): void
+    {
+        $this->isActive = $isActive;
+    }
 
     public function getCustomer()
     {

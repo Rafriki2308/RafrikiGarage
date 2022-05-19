@@ -17,30 +17,49 @@ class MainViewControllerManager
         return array_merge($array);
     }
 
-    public function checkWorksheetIsActive($worksheets)
+    public function cleanUnAcitveCustomers($customers)
     {
-        $i = null;
-        foreach ($worksheets as $worksheet) {
-            $isActive = $worksheet->getIsActive();
+        foreach ($customers as $index=>$customer) {
 
-            if ($isActive) {
-                $i++;
+            if (!$customer->getIsActive() ) {
+                unset($customers[$index]);
             }
         }
 
-        if(!$i){
-            return false;
+        return $customers;
+    }
+
+    public function cleanUnAcitveCars($cars)
+    {
+        foreach ($cars as $index=>$car) {
+
+            if (!$car->getIsActive() ) {
+                unset($cars[$index]);
+            }
         }
 
-        return true;
+        return $cars;
+    }
+
+    public function cleanUnAcitveWorksheets($worksheets)
+    {
+        foreach ($worksheets as $index=>$worksheet) {
+
+            if (!$worksheet->getIsActive() ) {
+                unset($worksheets[$index]);
+            }
+        }
+
+        return $worksheets;
     }
 
     public function checkCarIsIn($worksheets)
     {
         foreach ($worksheets as $index=>$worksheet) {
-            $isActive = $isActive = $worksheet->getIsActive();
+            $isActive =  $worksheet->getIsActive();
+            $car = $worksheet->getCar();
 
-            if (!$isActive) {
+            if (!$isActive || $car == null ) {
                 unset($worksheets[$index]);
             }
         }

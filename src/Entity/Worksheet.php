@@ -20,6 +20,7 @@ class Worksheet
 
     /**
      * @ORM\ManyToOne(targetEntity="Car", inversedBy="worksheets")
+     * @ORM\JoinColumn (onDelete="SET NULL")
      */
     private $car;
 
@@ -75,7 +76,7 @@ class Worksheet
         return $this->isActive;
     }
 
-    public function setIsActive(int $isActive): self
+    public function setIsActive(bool $isActive): self
     {
         $this->isActive = $isActive;
 

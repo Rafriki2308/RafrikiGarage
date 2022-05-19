@@ -49,6 +49,7 @@ class MainViewController extends AbstractController
     {
         $carsRaw = $carRepository->findAll();
         $cars = $mainViewControllerManager->cleanArray($carsRaw);
+        $cars = $mainViewControllerManager->cleanUnAcitveCars($cars);
 
         return $this->render('Car/index.html.twig', [
             'cars' => $cars,
@@ -65,6 +66,7 @@ class MainViewController extends AbstractController
     {
         $customersRaw = $customerRepository->findAll();
         $customers = $mainViewControllerManager->cleanArray($customersRaw);
+        $customers = $mainViewControllerManager->cleanUnAcitveCustomers($customers);
 
         return $this->render('Customer/index.html.twig', [
             'customers' => $customers,
@@ -166,7 +168,7 @@ class MainViewController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $worksheetRepository->add($worksheet);
-            return $this->redirectToRoute('app_worksheet_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('homepage', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('Worksheet/new.html.twig', [
@@ -422,6 +424,74 @@ class MainViewController extends AbstractController
         }
 
         return $this->redirectToRoute('app_worksheet_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/customer/{id}/softDelete", name="app_customer_softDelete", methods={"POST"})
+     */
+    public function softDeleteCustomer(
+        Request $request,
+        Customer $customer,
+        Car $cars,
+        Worksheet $worksheets,
+        CustomerRepository $customerRepository,
+        CarRepository $carRepository,
+        WorksheetRepository $worksheetRepository
+    ): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$customer->getId(), $request->request->get('_token'))) {
+            if($customer->getIsActive()){
+                $customer->setIsActive(false);
+                $cars = $customer->getCars();
+
+                foreach ($cars as $car){
+                    if($car->getIsActive()){
+                        $worksheets = $car->getWorksheets();
+                        foreach ($worksheets as $worksheet){
+                            if($worksheet->getIsActive()){
+                                $worksheet->setIsActive(false);
+                                $worksheetRepository->add($worksheet);
+                            }
+                        }
+                        $car->setIsActive(false);
+                        $carRepository->addCar($car);
+                    }
+                }
+                $customer->setIsActive(false);
+                $customerRepository->addCustomer($customer);
+            }
+        }
+
+        return $this->redirectToRoute('homepage', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/car/{id}/softCar", name="app_customer_softCar", methods={"POST"})
+     */
+    public function softDeleteCar(
+        Request $request,
+        Car $car,
+        Worksheet $worksheet,
+        CarRepository $carRepository,
+        WorksheetRepository $worksheetRepository
+    ): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$car->getId(), $request->request->get('_token'))) {
+            if ($car->getIsActive()) {
+                $worksheets = $car->getWorksheets();
+
+                foreach ($worksheets as $worksheet) {
+                    if ($worksheet->getIsActive()) {
+                        $worksheet->setIsActive(false);
+                        $worksheetRepository->add($worksheet);
+                    }
+                }
+                $car->setIsActive(false);
+                $carRepository->addCar($car);
+            }
+        }
+
+        return $this->redirectToRoute('homepage', [], Response::HTTP_SEE_OTHER);
     }
 
     /**
