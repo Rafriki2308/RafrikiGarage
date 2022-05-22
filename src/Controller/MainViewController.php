@@ -221,6 +221,10 @@ class MainViewController extends AbstractController
 
         $car = $carRepository->findOneCarById($id);
 
+        if($car == null){
+            return $this->renderForm('Error/car_not_found.html.twig');
+        }
+
         $worksheets = $car->getWorksheets();
 
         return $this->renderForm('Car/show.html.twig', [
@@ -238,6 +242,10 @@ class MainViewController extends AbstractController
         $regPlate = $request->query->get("regPlate");
 
         $car = $carRepository->findOneCarByRegPlate($regPlate);
+
+        if($car == null){
+            return $this->renderForm('Error/car_not_found.html.twig');
+        }
 
         $worksheets = $car->getWorksheets();
 
@@ -257,6 +265,10 @@ class MainViewController extends AbstractController
 
         $car = $carRepository->findOneCarByChasisNum($chasisNum);
 
+        if($car == null){
+            return $this->renderForm('Error/car_not_found.html.twig');
+        }
+
         $worksheets = $car->getWorksheets();
 
         return $this->renderForm('Car/show.html.twig', [
@@ -273,6 +285,10 @@ class MainViewController extends AbstractController
     {
         $idForm = $request->query->get("id");
         $customer = $customerRepository->findOneCustomerById($idForm);
+
+        if($customer == null){
+            return $this->renderForm('Error/customer_not_found.html.twig');
+        }
         $cars = $customer->getCars();
 
         return $this->renderForm('Customer/show.html.twig', [
@@ -289,6 +305,10 @@ class MainViewController extends AbstractController
     {
         $idForm = $request->query->get("idCard");
         $customer = $customerRepository->findOneCustomerByIdCard($idForm);
+
+        if($customer == null){
+            return $this->renderForm('Error/customer_not_found.html.twig');
+        }
         $cars = $customer->getCars();
 
         return $this->renderForm('Customer/show.html.twig', [
@@ -298,7 +318,7 @@ class MainViewController extends AbstractController
     }
 
     /**
-     * @Route("/search_worksheet", name="app_search_worksheet_ByWorksheetNum", methods={"GET"})
+     * @Route("/searchById_worksheet", name="app_search_worksheet_ByWorksheetNum", methods={"GET"})
      *
      */
     public function searchWorksheetByWorksheetNum(Request $request, WorksheetRepository $worksheetRepository)
@@ -307,9 +327,40 @@ class MainViewController extends AbstractController
 
         $worksheet = $worksheetRepository->findOneWorksheetByWorksheetNum($worksheetNum);
 
+        if($worksheet == null){
+            return $this->renderForm('Error/worksheet_not_found.html.twig');
+        }
+
         return $this->renderForm('Worksheet/show.html.twig', [
             'worksheet' => $worksheet,
         ]);
+    }
+
+    /**
+     * @Route("/searchByRegPlate_worksheet/serch", name="app_search_worksheet_ByRegPlate", methods={"GET"})
+     *
+     */
+    public function searchWorksheetByRegPlate(
+        Request $request,
+        WorksheetRepository $worksheetRepository,
+        CarRepository $carRepository
+    )
+    {
+        $regPlate = $request->query->get('worksheetRegPlate');
+
+        $car = $carRepository->findOneCarByRegPlate($regPlate);
+
+        if($car == null){
+            return $this->renderForm('Error/worksheet_not_found.html.twig');
+        }
+
+        $worksheets = $car->getWorksheets();
+
+        return $this->renderForm('Worksheet/index.html.twig', [
+            'car' => $car,
+            'worksheets' => $worksheets
+        ]);
+        //return new Response($regPlate);
     }
 
     /**

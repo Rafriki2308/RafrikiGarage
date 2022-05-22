@@ -96,18 +96,13 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type=number] { -moz-appearance:textfield; }
 
-.container{
-    margin: 100px;
+.bodyContainer{
+    margin: 25px;
 }
 
 /*************************Style to NavBar**********************/
 nav{
     background-color: #22a1f6;
-}
-
-nav img{
-    width: 200px;
-    height: auto;
 }
 
 .nav-link{
@@ -124,12 +119,16 @@ nav img{
 }
 
 #navbarSupportedContent{
-    text-align: center;
+    margin-left: 50px;
 }
 
 #linea{
     background-color: #44708d;
     height: 50px;
+}
+
+#logoContainer{
+    background-color: #22a1f6;
 }
 
 /******************************Style Index**************************************/
@@ -214,6 +213,30 @@ img {
     .location-image img {
         filter: blur(2px);
     }
+}
+
+/**************************Style Error Template********************************/
+
+.exception{
+    width: 400px;
+    height: 400px;
+}
+
+#oopssContainer{
+    margin: 50px;
+    align-self: center;
+
+}
+
+/*******************Style UnderConstruction Template*************************/
+
+.underConstruction div{
+    margin: 50px;
+    align-self: center;
+}
+.underConstruction img{
+    width: 600px;
+    height: auto;
 }
 
 /******************************Sytle Footer*************************************/

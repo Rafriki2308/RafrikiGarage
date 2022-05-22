@@ -1,5 +1,25 @@
-<form method="post" action="{{ path('app_worksheet_softDelete', {'id': worksheet.id}) }}" onsubmit="return confirm('Esta Seguro que desea borrar este elemento?');">
+<form method="post" action="{{ path('app_worksheet_softDelete', {'id': worksheet.id}) }}">
     <br/>
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ worksheet.id) }}">
-    <button class="btn">Borrar</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdropDelete">Borrar</button>
+
+    <!--Modal-->
+    <div class="modal fade" id="staticBackdropDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Dar Salida al Vehículo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Si borra la Hoja de Trabajo desaparecerá el vehículo asociado de la página principal.
+                    ¿Estas Seguro de querer borrarla?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" onclick="">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>

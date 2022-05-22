@@ -12,17 +12,12 @@
                 <th>Número Hoja de Trabajo</th>
                 <td>{{ worksheet.id }}</td>
             </tr>
-            <tr></tr><tr></tr>
             <tr>
                 <th>Placa de Matrícula</th>
                 <td>
-                    {% if worksheet.car == null%}
-                    <p>Este Vehículo Ha sido Eliminado<p>
-                {% else %}
                     <a href="{{ path('app_car_show', {'id': worksheet.car.id}) }}">
                         {{ worksheet.car.regPlate }}
                     </a>
-                {% endif %}
                 </td>
             </tr>
             <tr></tr><tr></tr>

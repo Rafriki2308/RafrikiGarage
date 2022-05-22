@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cliente No encontrado{% endblock %}
+
+{% block body %}
+
+    <div>
+        <h1>No se ha encontrado Cliente</h1>
+        <div id="oopssContainer" align="center">
+            <img class="exception" src="{{ asset('assets/oops.jpeg') }}" align="center" alt="Muestar Mujer Gesticulando Opps">
+        </div>
+        <a href="{{ path('search_customer') }}">
+            <button type="button">Volver a la Búsqueda</button>
+        </a>
+    </div>
+{% endblock %}

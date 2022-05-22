@@ -11,9 +11,7 @@
         <thead>
             <tr>
                 <th>Número Hoja de Trabajo</th>
-                <th></th>
                 <th>Matricula</th>
-                <th></th>
                 <th>Descripción</th>
                 <th><img id="tools" src="/assets/tools3.jpg"/></th>
             </tr>
@@ -25,13 +23,16 @@
                 {% if worksheet.car == null%}
                     <td>Este Vehículo ha sido eliminado</td>
                 {% else %}
-                    <td>{{ worksheet.car.regPlate }}</td>
+                    <td>
+                        <a href="{{ path('app_car_show', {'id': worksheet.car.id}) }}">
+                            {{ worksheet.car.regPlate }}
+                        </a>
+                    </td>
                 {% endif %}
-
-                <td></td>
                 <td>{{ worksheet.description }}</td>
                 <td>
-                    <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>&nbsp;
+                    <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
+                    <br/>
                     <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">Editar</a>
                 </td>
             </tr>

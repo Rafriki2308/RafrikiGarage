@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Página en Construcción{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Página en Construcción</h1>
+        <h3>Sentimos las molestias</h3>
+        <div class="underConstruction" id="underConstructionContainer" align="center">
+            <img class="underConstruction" src="{{ asset('assets/under_construction.jpg') }}" align="center" alt="Muesta Cartel de Construcción">
+        </div>
+        <a href="{{ path('homepage') }}">
+            <button type="button">Volver al Inicio</button>
+        </a>
+    </div>
+{% endblock %}

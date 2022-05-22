@@ -15,6 +15,13 @@
                             <td><button type="submit"/>Buscar</td>
                         </tr>
                 </form>
+                <form action="{{path('app_search_worksheet_ByRegPlate')}}" method="GET" >
+                    <tr>
+                        <th>Buscar Hoja de Trabajo por Matrícula de Vehículo</th>
+                        <td><input type="text" name="worksheetRegPlate" id="worksheetRegPlate"></td>
+                        <td><button type="submit"/>Buscar</td>
+                    </tr>
+                </form>
             </tbody>
         </table>
 {% endblock %}

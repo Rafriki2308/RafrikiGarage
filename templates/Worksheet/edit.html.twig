@@ -6,16 +6,16 @@
     <br/>
     <h1>Editar Hoja de Trabajo</h1>
     <br/>
-
-    {{ include('Worksheet/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    {{ include('Worksheet/_form.html.twig', {
+        'button_label' : 'Actualizar' ,
+        'button_type' : 'button',
+        'button_class' : "btn btn-primary",
+        'target' : '#staticBackdropEdit'
+    }) }}
     <br/>
     {{ include('Worksheet/_delete_form.html.twig') }}
     <br/>
     <a href="{{ path('app_worksheet_index') }}">
         <button  type="button">Volver a la Lista</button>
     </a>
-
-    <br/>
-
-
 {% endblock %}

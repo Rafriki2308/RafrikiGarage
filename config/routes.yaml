@@ -19,3 +19,27 @@ search_worksheet:
   controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
   defaults:
     template: 'Worksheet/search.html.twig'
+
+customer_not_found:
+  path: /customer_not_found
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    template: 'Error/customer_not_found.html.twig'
+
+car_not_found:
+  path: /car_not_found
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    template: 'Error/car_not_found.html.twig'
+
+worksheet_not_found:
+  path: /worksheet_not_found
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    template: 'Error/worksheet_not_found.html.twig'
+
+underConstruction:
+  path: /underConstruction
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    template: 'underConstruction.html.twig'

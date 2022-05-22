@@ -6,7 +6,12 @@
     <br/>
     <h1>Editar Cliente</h1>
     <br/>
-    {{ include('Customer/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    {{ include('Customer/_form.html.twig', {
+        'button_label' : 'Actualizar' ,
+        'button_type' : 'button',
+        'button_class' : "btn btn-primary",
+        'target' : '#staticBackdropEdit'
+    }) }}
     <br/>
     {{ include('Customer/_delete_form.html.twig') }}
     <br/>

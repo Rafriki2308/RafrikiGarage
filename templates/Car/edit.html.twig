@@ -7,7 +7,12 @@
     <h1>Editar Vehículo</h1>
 
     <br/>
-    {{ include('Car/_form.html.twig', {'button_label': 'Actualizar'}) }}
+    {{ include('Car/_form.html.twig', {
+        'button_label' : 'Actualizar' ,
+        'button_type' : 'button',
+        'button_class' : "btn btn-primary",
+        'target' : '#staticBackdropEdit'
+    }) }}
     <br/>
     {{ include('Car/_delete_form.html.twig') }}
     <br/>
