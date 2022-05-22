@@ -131,6 +131,11 @@ nav{
     background-color: #22a1f6;
 }
 
+#logoImg{
+    height: 50px;
+    width: auto;
+}
+
 /******************************Style Index**************************************/
 
 th{
