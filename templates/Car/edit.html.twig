@@ -3,24 +3,17 @@
 {% block title %}Editar Vehículo{% endblock %}
 
 {% block body %}
-    <br>
-    <h1>Editar Vehículo</h1>
-
-    <br/>
-    {{ include('Car/_form.html.twig', {
-        'button_label' : 'Actualizar' ,
-        'button_type' : 'button',
-        'button_class' : "btn btn-primary",
-        'target' : '#staticBackdropEdit'
-    }) }}
-    <br/>
-    {{ include('Car/_delete_form.html.twig') }}
-    <br/>
-    <a href="{{ path('app_car_index') }}">
-        <button type="button">Volver a la Lista</button>
-    </a>
-
-    <br/>
-
-
+    <div class="editForm">
+        <h1>Editar Vehículo</h1>
+        {{ include('Car/_form.html.twig', {
+            'button_label' : 'Actualizar' ,
+            'button_type' : 'button',
+            'button_class' : "btn btn-primary",
+            'target' : '#staticBackdropEdit'
+        }) }}
+        {{ include('Car/_delete_form.html.twig') }}
+        <a href="{{ path('app_car_index') }}">
+            <button type="button">Volver a la Lista</button>
+        </a>
+    </div>
 {% endblock %}

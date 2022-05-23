@@ -1,25 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Indice Vehículos{% endblock %}
+{% block title %}Índice Vehículos{% endblock %}
 
 {% block body %}
     <br/>
-    <h1>Indice de Vehículos</h1>
+    <h1>Índice de Vehículos</h1>
     <br/>
-
     <table class="table">
         <thead>
             <tr>
                 <th>Nombre Cliente</th>
-                <th></th><th></th>
-                <th>Matricula</th>
-                <th></th><th></th>
+                <th>Matrícula</th>
                 <th>Número Chasis</th>
-                <th></th><th></th>
                 <th>Marca</th>
-                <th></th><th></th>
                 <th>Modelo</th>
-                <th></th><th></th>
                 <th>Tipo Motor</th>
                 <th><img id="tools" src="/assets/tools3.jpg"/></th>
            </tr>
@@ -27,21 +21,16 @@
         <tbody>
         {% for car in cars %}
             <tr>
-                <td>
+                <td style="vertical-align:middle; horiz-align: center">
                     <a href="{{ path('app_customer_show', {'id': car.customer.id}) }}">
                         {{ car.customer.name}}
                     </a>
                 </td>
-                <td></td><td></td>
-                <td>{{ car.regPlate }}</td>
-                <td></td><td></td>
-                <td>{{ car.chasisNum }}</td>
-                <td></td><td></td>
-                <td>{{ car.brand }}</td>
-                <td></td><td></td>
-                <td>{{ car.model }}</td>
-                <td></td><td></td>
-                <td>{{ car.engineType }}</td>
+                <td style="vertical-align:middle; horiz-align: center">{{ car.regPlate }}</td>
+                <td style="vertical-align:middle; horiz-align: center">{{ car.chasisNum }}</td>
+                <td style="vertical-align:middle; horiz-align: center">{{ car.brand }}</td>
+                <td style="vertical-align:middle; horiz-align: center">{{ car.model }}</td>
+                <td style="vertical-align:middle; horiz-align: center">{{ car.engineType }}</td>
                 <td>
                     <a href="{{ path('app_car_show', {'id': car.id}) }}">Detalle</a>
                     <br/>

@@ -27,20 +27,16 @@
             </tr>
         </tbody>
     </table>
-
     <br/><br/>
-    {{ include('Worksheet/_delete_form.html.twig') }}
-    </br>
-
+    {% if worksheet.isActive == true %}
+        {{ include('Worksheet/_delete_form.html.twig') }}
+        </br>
+        <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">
+            <button type="button">Editar</button>
+        </a>
+    {% endif %}
     <a href="{{ path('app_worksheet_index') }}">
         <button type="button">Volver a la Lista</button>
-    </a>&nbsp;
-
-    <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">
-        <button type="button">Editar</button>
     </a>
-
     <br/><br/>
-
-
 {% endblock %}

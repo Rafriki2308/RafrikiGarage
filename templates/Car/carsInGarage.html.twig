@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Indice Vehículos{% endblock %}
+{% block title %}Vehículos en Taller{% endblock %}
 
 {% block body %}
 
@@ -16,7 +16,7 @@
                     </div>
                 </a>
                 <div class="location-image">
-                    <img class="img-thumbnail" id="carHomepageImg" src="{{ asset('uploads/pictures/' ~ worksheet.car.pictureCar) }}"
+                    <img class="border border-primary border border-1" id="carHomepageImg" src="{{ asset('uploads/pictures/' ~ worksheet.car.pictureCar) }}"
                          alt="El Vehículo no tiene Fotogrfía">
                 </div>
             </div>

@@ -3,13 +3,11 @@
 {% block title %}Nuevo Cliente{% endblock %}
 
 {% block body %}
-    <br>
-    <h1>Crear Nuevo Cliente</h1>
-
-    <br/>
-    {{ include('Customer/_form.html.twig') }}
-    <br/>
-    <a href="{{ path('app_customer_index') }}">
-        <button type="button">Volver a Lista Clientes</button>
-    </a>
+    <div class="newForm">
+        <h1>Crear Nuevo Cliente</h1>
+        {{ include('Customer/_form.html.twig') }}
+        <a href="{{ path('app_customer_index') }}">
+            <button type="button">Volver a Lista Clientes</button>
+        </a>
+    </div>
 {% endblock %}

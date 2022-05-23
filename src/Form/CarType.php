@@ -32,9 +32,6 @@ class CarType extends AbstractType
                 'label'=>'Ruta Foto',
                 'data_class' => null
             ])
-            ->add('isActive', null,[
-                'label' =>'Esta en taller'
-            ])
         ;
     }
 

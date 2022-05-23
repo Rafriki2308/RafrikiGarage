@@ -6,20 +6,20 @@
     <br/>
     <h1>Buscar Hoja de Trabajo</h1>
     <br/>
-        <table class="table">
+        <table class="search">
             <tbody>
                 <form action="{{path('app_search_worksheet_ByWorksheetNum')}}" method="GET" >
                         <tr>
                             <th>Buscar Hoja de Trabajo por Número</th>
                             <td><input type="number" name="worksheetNum" id="worksheetNum"></td>
-                            <td><button type="submit"/>Buscar</td>
+                            <td id="searchButton"><button type="submit"/>Buscar</td>
                         </tr>
                 </form>
                 <form action="{{path('app_search_worksheet_ByRegPlate')}}" method="GET" >
                     <tr>
                         <th>Buscar Hoja de Trabajo por Matrícula de Vehículo</th>
                         <td><input type="text" name="worksheetRegPlate" id="worksheetRegPlate"></td>
-                        <td><button type="submit"/>Buscar</td>
+                        <td id="searchButton"><button type="submit"/>Buscar</td>
                     </tr>
                 </form>
             </tbody>

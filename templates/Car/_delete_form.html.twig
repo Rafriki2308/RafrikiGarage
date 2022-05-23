@@ -1,7 +1,7 @@
 <form method="post" action="{{ path('app_customer_softCar', {'id': car.id}) }}">
     <br/>
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ car.id) }}">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Borrar</button>
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Borrar</button>
 
     <!--Modal-->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

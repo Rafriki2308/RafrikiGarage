@@ -1,39 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Indice de Clientes{% endblock %}
+{% block title %}Índice de Clientes{% endblock %}
 
 {% block body %}
     <br/>
-    <h1>Indice Clientes</h1>
+    <h1>Índice Clientes</h1>
     <br/>
-
     <table class="table">
         <thead>
             <tr>
-                <th>Nombre</th>
-                <th></th><th></th>
-                <th>Apellidos</th>
-                <th></th><th></th>
-                <th>Identificación</th>
-                <th></th><th></th>
-                <th>Número Teléfono</th>
-                <th></th><th></th>
-                <th>EMail</th>
-                <th><img id="tools" src="/assets/tools3.jpg"/></th>
+                <th style="horiz-align: center">Nombre</th>
+                <th style="horiz-align: center">Apellidos</th>
+                <th style="horiz-align: center">Identificación</th>
+                <th style="horiz-align: center">Número Teléfono</th>
+                <th style="horiz-align: center">Email</th>
+                <th style="horiz-align: center"><img id="tools" src="/assets/tools3.jpg"/></th>
             </tr>
         </thead>
         <tbody>
         {% for customer in customers %}
             <tr>
-                <td>{{ customer.name }}</td>
-                <td></td><td></td>
-                <td>{{ customer.surnames }}</td>
-                <td></td><td></td>
-                <td>{{ customer.idCard }}</td>
-                <td></td><td></td>
-                <td>{{ customer.telNumber }}</td>
-                <td></td><td></td>
-                <td>{{ customer.eMail }}</td>
+                <td style="vertical-align:middle; horiz-align: center">{{ customer.name }}</td>
+                <td  style="vertical-align:middle; horiz-align: center">{{ customer.surnames }}</td>
+                <td  style="vertical-align:middle; horiz-align: center">{{ customer.idCard }}</td>
+                <td  style="vertical-align:middle; horiz-align: center">{{ customer.telNumber }}</td>
+                <td  style="vertical-align:middle; horiz-align: center">{{ customer.eMail }}</td>
                 <td>
                     <a href="{{ path('app_customer_show', {'id': customer.id}) }}">Detalle</a>
                     <br/>
@@ -47,9 +38,7 @@
         {% endfor %}
         </tbody>
     </table>
-
     <br/><br/>
-
     <a href="{{ path('app_customer_new') }}">
         <button type="button">Crear Nuevo Cliente</button>
     </a>

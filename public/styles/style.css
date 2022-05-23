@@ -97,7 +97,8 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] { -moz-appearance:textfield; }
 
 .bodyContainer{
-    margin: 25px;
+    max-width: 1680px;
+    margin: 0 auto;
 }
 
 /*************************Style to NavBar**********************/
@@ -131,12 +132,57 @@ nav{
     background-color: #22a1f6;
 }
 
-#logoImg{
-    height: 50px;
-    width: auto;
+/*****************************Style Form***************************************/
+
+form button{
+    margin-top: 10px;
+}
+.formContainer{
+    margin-top: 50px;
+    margin-bottom: 100px;
+
+}
+.newForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newForm h1{
+    margin-top: 20px;
+}
+
+.editForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.editForm h1{
+    margin-top: 20px;
+}
+
+.editForm button{
+    margin-top: 15px;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 700px) {
+    .formContainer{
+        margin-left: 50px;
+    }
 }
 
 /******************************Style Index**************************************/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 6px;
+    text-align: left;
+}
 
 th{
     font-size: 22px;
@@ -147,6 +193,23 @@ img {
     height: 50px;
     width: 50px;
 }
+
+/*********************************Style Search*********************************/
+
+@media only screen and (min-width: 0px) and (max-width: 700px) {
+    .search td {
+        display:inline-block;
+        padding:5px;
+    }
+    .search td input{
+        width: 75%;
+    }
+
+    #searchButton{
+        margin-left: 200px;
+    }
+}
+
 
 /******************************Style Homepage********************************/
 
@@ -253,6 +316,9 @@ img {
     color:#e9f7f8;
     position: absolute;
     bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #container-footer ul {
@@ -302,7 +368,6 @@ img {
 }
 
 #container-footer .copyright {
-    margin-top:15px;
     text-align:center;
     font-size:13px;
     color:#e9f7f8;

@@ -3,12 +3,11 @@
 {% block title %}Nuevo Vehículo{% endblock %}
 
 {% block body %}
-    <br/>
-    <h1>Crear un Vehículo Nuevo</h1>
-
-    {{ include('Car/_form.html.twig') }}
-    <br/>
-    <a href="{{ path('app_car_index') }}">
-        <button type="button">Volver a la Lista</button>
-    </a>
+    <div class="newForm">
+        <h1>Crear un Vehículo Nuevo</h1>
+        {{ include('Car/_form.html.twig') }}
+        <a href="{{ path('app_car_index') }}">
+            <button type="button">Volver a la Lista</button>
+        </a>
+    </div>
 {% endblock %}

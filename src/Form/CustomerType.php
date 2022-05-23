@@ -27,9 +27,6 @@ class CustomerType extends AbstractType
             ->add('eMail', null, [
                 'label' => 'Email'
             ])
-            ->add('isActive', null,[
-                'label' =>'Esta en taller'
-            ])
         ;
     }
 

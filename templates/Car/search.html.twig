@@ -6,27 +6,27 @@
     <br/>
     <h1>Buscar Vehículo</h1>
     <br/>
-        <table class="table">
+        <table class="search">
             <tbody>
                 <form action="{{path('app_search_car_ById')}}">
                     <tr>
                         <th>Buscar Vehículo por Número</th>
                         <td><input type="number" name="id" id="id"></td>
-                        <td><button type="submit"/>Buscar</td>
+                        <td id="searchButton"><button type="submit"/>Buscar</td>
                     </tr>
                 </form>
                 <form action="{{path('app_search_car_ByRegPlate')}}">
                     <tr>
                         <th>Buscar Vehículo por Matricula</th>
                         <td><input type="text" name="regPlate" id="regPlate"></td>
-                        <td><button type="submit"/>Buscar</td>
+                        <td id="searchButton"><button type="submit"/>Buscar</td>
                     </tr>
                 </form>
                 <form action="{{path('app_search_car_ByChasisNum')}}">
                     <tr>
                         <th>Buscar Vehículo por Número de Bastidor</th>
                         <td><input type="text" name="chasisNum" id="chasisNum"></td>
-                        <td><button type="submit"/>Buscar</td>
+                        <td id="searchButton"><button type="submit"/>Buscar</td>
                     </tr>
                 </form>
             </tbody>

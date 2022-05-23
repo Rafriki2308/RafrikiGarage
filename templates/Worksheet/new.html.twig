@@ -3,13 +3,11 @@
 {% block title %}Nueva Hoja de Trabajo{% endblock %}
 
 {% block body %}
-    <br/>
-    <h1>Crear una Hoja de Trabajo</h1>
-    <br/>
-
-    {{ include('Worksheet/_form.html.twig') }}
-    <br/>
-    <a href="{{ path('homepage') }}">
-        <button type="button">Volver a la Lista</button>
-    </a>
+    <div class="newForm">
+        <h1>Crear una Hoja de Trabajo</h1>
+        {{ include('Worksheet/_form.html.twig') }}
+        <a href="{{ path('homepage') }}">
+            <button type="button">Volver a la Lista</button>
+        </a>
+    </div>
 {% endblock %}

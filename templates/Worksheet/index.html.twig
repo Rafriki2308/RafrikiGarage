@@ -1,40 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Indice Hoja de Trabajo{% endblock %}
+{% block title %}Índice Hoja de Trabajo{% endblock %}
 
 {% block body %}
     <br/>
-    <h1>Indice Hojas de Trabajo</h1>
+    <h1>Índice Hojas de Trabajo</h1>
     <br/>
-
     <table class="table">
         <thead>
             <tr>
-                <th>Número Hoja de Trabajo</th>
-                <th>Matricula</th>
-                <th>Descripción</th>
-                <th><img id="tools" src="/assets/tools3.jpg"/></th>
+                <th style="vertical-align:middle; horiz-align: center">Número</th>
+                <th style="vertical-align:middle; horiz-align: center">Matrícula</th>
+                <th style="vertical-align:middle; horiz-align: center">Descripción</th>
+                <th style="vertical-align:middle; horiz-align: center"><img id="tools" src="/assets/tools3.jpg"/></th>
             </tr>
         </thead>
         <tbody>
         {% for worksheet in worksheets %}
             <tr>
-                <td>{{ worksheet.id }}</td>
+                <td style="vertical-align:middle; horiz-align: center">{{ worksheet.id }}</td>
                 {% if worksheet.car == null%}
                     <td>Este Vehículo ha sido eliminado</td>
                 {% else %}
-                    <td>
+                    <td style="vertical-align:middle; horiz-align: center">
                         <a href="{{ path('app_car_show', {'id': worksheet.car.id}) }}">
                             {{ worksheet.car.regPlate }}
                         </a>
                     </td>
                 {% endif %}
-                <td>{{ worksheet.description }}</td>
-                <td>
-                    <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
-                    <br/>
-                    <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">Editar</a>
-                </td>
+                <td style="vertical-align:middle; horiz-align: center">{{ worksheet.description }}</td>
+                {% if worksheet.isActive == false %}
+                    <td >
+                        <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
+                    </td>
+                {% else %}
+                    <td>
+                        <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
+                        <br/>
+                        <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">Editar</a>
+                    </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>

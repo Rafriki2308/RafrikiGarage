@@ -12,9 +12,6 @@ class WorksheetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('isActive', null,[
-                'label' =>'Esta en taller'
-            ])
             ->add('description', null, [
                 'label' => 'Descripción'
             ])

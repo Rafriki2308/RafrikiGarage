@@ -46,44 +46,44 @@
     </table>
 
     <br/><br/>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Número Hoja Trabajo</th>
-            <th></th><th></th><th></th>
-            <th>Descripción</th>
-            <th></th><th></th><th></th>
-            <th>Esta Dentro del Taller</th>
-            <th></th><th></th><th></th>
-            <th><img id="tools" src="/assets/tools3.jpg"/></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for worksheet in worksheets %}
+    <div style="overflow-x:auto;">
+        <table>
+            <thead>
             <tr>
-                <td>{{ worksheet.id }}</td>
-                <td></td><td></td><td></td>
-                <td>{{ worksheet.description }}</td>
-                <td></td><td></td><td></td>
-                {%if worksheet.isActive == 1%}
-                    <td>El Vehículo Esta en el Taller</td>
-                {% else%}
-                    <td>El Vehículo no Esta en el Taller</td>
-                {% endif %}
-                <td></td><td></td><td></td>
-                <td>
-                    <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
-                </td>
+                <th>Número Hoja Trabajo</th>
+                <th></th><th></th><th></th>
+                <th>Descripción</th>
+                <th></th><th></th><th></th>
+                <th>Esta Dentro del Taller</th>
+                <th></th><th></th><th></th>
+                <th><img id="tools" src="/assets/tools3.jpg"/></th>
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">No se han encotrado registros</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+            {% for worksheet in worksheets %}
+                <tr>
+                    <td>{{ worksheet.id }}</td>
+                    <td></td><td></td><td></td>
+                    <td>{{ worksheet.description }}</td>
+                    <td></td><td></td><td></td>
+                    {%if worksheet.isActive == 1%}
+                        <td>El Vehículo Esta en el Taller</td>
+                    {% else%}
+                        <td>El Vehículo no Esta en el Taller</td>
+                    {% endif %}
+                    <td></td><td></td><td></td>
+                    <td>
+                        <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">No se han encotrado registros</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <br/>
     {{ include('Car/_delete_form.html.twig') }}
     <br/>
