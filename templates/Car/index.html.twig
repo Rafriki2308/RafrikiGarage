@@ -6,42 +6,44 @@
     <br/>
     <h1>Índice de Vehículos</h1>
     <br/>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre Cliente</th>
-                <th>Matrícula</th>
-                <th>Número Chasis</th>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Tipo Motor</th>
-                <th><img id="tools" src="/assets/tools3.jpg"/></th>
-           </tr>
-        </thead>
-        <tbody>
-        {% for car in cars %}
-            <tr>
-                <td style="vertical-align:middle; horiz-align: center">
-                    <a href="{{ path('app_customer_show', {'id': car.customer.id}) }}">
-                        {{ car.customer.name}}
-                    </a>
-                </td>
-                <td style="vertical-align:middle; horiz-align: center">{{ car.regPlate }}</td>
-                <td style="vertical-align:middle; horiz-align: center">{{ car.chasisNum }}</td>
-                <td style="vertical-align:middle; horiz-align: center">{{ car.brand }}</td>
-                <td style="vertical-align:middle; horiz-align: center">{{ car.model }}</td>
-                <td style="vertical-align:middle; horiz-align: center">{{ car.engineType }}</td>
-                <td>
-                    <a href="{{ path('app_car_show', {'id': car.id}) }}">Detalle</a>
-                    <br/>
-                    <a href="{{ path('app_car_edit', {'id': car.id}) }}">Editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">No se han encontrado vehículos</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre Cliente</th>
+                    <th>Matrícula</th>
+                    <th>Número Chasis</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Tipo Motor</th>
+                    <th><img id="tools" src="/assets/tools3.jpg"/></th>
+               </tr>
+            </thead>
+            <tbody>
+            {% for car in cars %}
+                <tr>
+                    <td style="vertical-align:middle; horiz-align: center">
+                        <a href="{{ path('app_customer_show', {'id': car.customer.id}) }}">
+                            {{ car.customer.name}}
+                        </a>
+                    </td>
+                    <td style="vertical-align:middle; horiz-align: center">{{ car.regPlate }}</td>
+                    <td style="vertical-align:middle; horiz-align: center">{{ car.chasisNum }}</td>
+                    <td style="vertical-align:middle; horiz-align: center">{{ car.brand }}</td>
+                    <td style="vertical-align:middle; horiz-align: center">{{ car.model }}</td>
+                    <td style="vertical-align:middle; horiz-align: center">{{ car.engineType }}</td>
+                    <td>
+                        <a href="{{ path('app_car_show', {'id': car.id}) }}">Detalle</a>
+                        <br/>
+                        <a href="{{ path('app_car_edit', {'id': car.id}) }}">Editar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">No se han encontrado vehículos</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

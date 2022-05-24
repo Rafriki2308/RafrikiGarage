@@ -6,46 +6,48 @@
     <br/>
     <h1>Índice Hojas de Trabajo</h1>
     <br/>
-    <table class="table">
-        <thead>
-            <tr>
-                <th style="vertical-align:middle; horiz-align: center">Número</th>
-                <th style="vertical-align:middle; horiz-align: center">Matrícula</th>
-                <th style="vertical-align:middle; horiz-align: center">Descripción</th>
-                <th style="vertical-align:middle; horiz-align: center"><img id="tools" src="/assets/tools3.jpg"/></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for worksheet in worksheets %}
-            <tr>
-                <td style="vertical-align:middle; horiz-align: center">{{ worksheet.id }}</td>
-                {% if worksheet.car == null%}
-                    <td>Este Vehículo ha sido eliminado</td>
-                {% else %}
-                    <td style="vertical-align:middle; horiz-align: center">
-                        <a href="{{ path('app_car_show', {'id': worksheet.car.id}) }}">
-                            {{ worksheet.car.regPlate }}
-                        </a>
-                    </td>
-                {% endif %}
-                <td style="vertical-align:middle; horiz-align: center">{{ worksheet.description }}</td>
-                {% if worksheet.isActive == false %}
-                    <td >
-                        <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
-                    </td>
-                {% else %}
-                    <td>
-                        <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
-                        <br/>
-                        <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">Editar</a>
-                    </td>
-                {% endif %}
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">No se han encontrado hojas de trabajo</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="vertical-align:middle; horiz-align: center">Número</th>
+                    <th style="vertical-align:middle; horiz-align: center">Matrícula</th>
+                    <th style="vertical-align:middle; horiz-align: center">Descripción</th>
+                    <th style="vertical-align:middle; horiz-align: center"><img id="tools" src="/assets/tools3.jpg"/></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for worksheet in worksheets %}
+                <tr>
+                    <td style="vertical-align:middle; horiz-align: center">{{ worksheet.id }}</td>
+                    {% if worksheet.car == null%}
+                        <td>Este Vehículo ha sido eliminado</td>
+                    {% else %}
+                        <td style="vertical-align:middle; horiz-align: center">
+                            <a href="{{ path('app_car_show', {'id': worksheet.car.id}) }}">
+                                {{ worksheet.car.regPlate }}
+                            </a>
+                        </td>
+                    {% endif %}
+                    <td style="vertical-align:middle; horiz-align: center">{{ worksheet.description }}</td>
+                    {% if worksheet.isActive == false %}
+                        <td >
+                            <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
+                        </td>
+                    {% else %}
+                        <td>
+                            <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
+                            <br/>
+                            <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">Editar</a>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">No se han encontrado hojas de trabajo</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

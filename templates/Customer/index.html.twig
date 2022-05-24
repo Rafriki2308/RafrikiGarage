@@ -6,38 +6,40 @@
     <br/>
     <h1>Índice Clientes</h1>
     <br/>
-    <table class="table">
-        <thead>
-            <tr>
-                <th style="horiz-align: center">Nombre</th>
-                <th style="horiz-align: center">Apellidos</th>
-                <th style="horiz-align: center">Identificación</th>
-                <th style="horiz-align: center">Número Teléfono</th>
-                <th style="horiz-align: center">Email</th>
-                <th style="horiz-align: center"><img id="tools" src="/assets/tools3.jpg"/></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for customer in customers %}
-            <tr>
-                <td style="vertical-align:middle; horiz-align: center">{{ customer.name }}</td>
-                <td  style="vertical-align:middle; horiz-align: center">{{ customer.surnames }}</td>
-                <td  style="vertical-align:middle; horiz-align: center">{{ customer.idCard }}</td>
-                <td  style="vertical-align:middle; horiz-align: center">{{ customer.telNumber }}</td>
-                <td  style="vertical-align:middle; horiz-align: center">{{ customer.eMail }}</td>
-                <td>
-                    <a href="{{ path('app_customer_show', {'id': customer.id}) }}">Detalle</a>
-                    <br/>
-                    <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">Editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">No se han encontrado Clientes</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div  class="table-responsive">
+        <table class="index">
+            <thead>
+                <tr>
+                    <th style="horiz-align: center">Nombre</th>
+                    <th style="horiz-align: center">Apellidos</th>
+                    <th style="horiz-align: center">Identificación</th>
+                    <th style="horiz-align: center">Número Teléfono</th>
+                    <th style="horiz-align: center">Email</th>
+                    <th style="horiz-align: center"><img id="tools" src="/assets/tools3.jpg"/></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <td style="vertical-align:middle; horiz-align: center">{{ customer.name }}</td>
+                    <td  style="vertical-align:middle; horiz-align: center">{{ customer.surnames }}</td>
+                    <td  style="vertical-align:middle; horiz-align: center">{{ customer.idCard }}</td>
+                    <td  style="vertical-align:middle; horiz-align: center">{{ customer.telNumber }}</td>
+                    <td  style="vertical-align:middle; horiz-align: center">{{ customer.eMail }}</td>
+                    <td>
+                        <a href="{{ path('app_customer_show', {'id': customer.id}) }}">Detalle</a>
+                        <br/>
+                        <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">Editar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">No se han encontrado Clientes</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <br/><br/>
     <a href="{{ path('app_customer_new') }}">
         <button type="button">Crear Nuevo Cliente</button>
