@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Hoja de Trabajo{% endblock %}</title>
+    <style type="text/css">
+
+        img {
+            height: 50px;
+            weight: auto;
+        }
+        
+        .signatures{
+            display: block;
+        }
+
+        .polig{
+            margin-top: 200px;
+            display: inline-block;
+            margin-left: 75px;
+            width:200px;
+            height:200px;
+            background:gray;
+            font-family:arial;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="bodyContainer">
+        <header>
+            <div class="headerContainer">
+                <img src="data:image/png;base64,{{ ruta_imagen }}"/>
+            </div>
+        </header>
+        <h3>Número Hoja de Trabajo: {{ worksheet.id }}</h3>
+        <h1>Detalle de Vehículo</h1>
+        <br/>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Nombre Cliente</th>
+                <td>{{ worksheet.car.customer.name}}</td>
+            </tr>
+            <tr></tr><tr></tr><tr></tr>
+            <tr>
+                <th>Móvil Cliente</th>
+                <td>{{ worksheet.car.customer.telNumber }}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <th>Matrícula</th>
+                <td>{{ worksheet.car.regPlate }}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <th>Número Chasis</th>
+                <td>{{ worksheet.car.chasisNum }}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <th>Marca</th>
+                <td>{{ worksheet.car.brand }}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <th>Modelo</th>
+                <td>{{ worksheet.car.model }}</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <th>Tipo Motor</th>
+                <td>{{ worksheet.car.engineType }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <h1>Detalle Hoja de Trabajo</h1>
+        <h3>Descripción:</h3>
+        <p>{{ worksheet.description }}</p>
+        <div class="signatures">
+            <div class="polig"> Firma Asesor: </div>
+            <div class="polig"> Firma Cliente: </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

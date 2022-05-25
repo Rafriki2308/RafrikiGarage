@@ -35,6 +35,9 @@
             <button type="button">Editar</button>
         </a>
     {% endif %}
+    <a href="{{ path('app_worksheet_print', {'id': worksheet.id}) }}" target="_blank">
+        <button type="button">Imprimir</button>
+    </a>
     <a href="{{ path('app_worksheet_index') }}">
         <button type="button">Volver a la Lista</button>
     </a>
