@@ -1,1 +1,1 @@
-# Rafiki-garage
+# Rafriki-garage
