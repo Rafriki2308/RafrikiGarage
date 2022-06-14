@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Página no Encontrada{% endblock %}
+
+{% block body %}
+    <br>
+    <h1>Upps parece que no existe la página que buscas</h1>
+    <br>
+    <div class="text-center">
+        <img  id="error404Img" src="{{ asset('assets/Error404.png') }}" class="rounded" alt="Imagen Error">
+    </div>
+{% endblock %}

@@ -65,20 +65,17 @@
         </table>
     </div>
     <br/><br/>
-
-    {{ include('Customer/_delete_form.html.twig') }}
-    <br/>
+    {% if is_granted('ROLE_ASSESSOR')%}
+        {{ include('Customer/_delete_form.html.twig') }}
+        <br/>
+        <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">
+            <button type="button">Editar</button>
+        </a>&nbsp;
+        <a href="{{ path('app_car_new', {'id': customer.id })}}">
+            <button type="button">Crear Nuevo Coche</button>
+        </a>
+    {% endif %}
     <a href="{{ path('app_customer_index') }}">
         <button type="button">Volver a la Lista</button>
     </a>&nbsp;
-
-    <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">
-        <button type="button">Editar</button>
-    </a>&nbsp;
-
-    <a href="{{ path('app_car_new', {'id': customer.id })}}">
-        <button type="button">Crear Nuevo Coche</button>
-    </a>
-
-
 {% endblock %}

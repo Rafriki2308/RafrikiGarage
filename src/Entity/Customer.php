@@ -46,6 +46,7 @@ class Customer
     /**
      * @ORM\Column(type="string", length=9, unique=true)
      * @Assert\NotBlank()
+     * @CustomAssert\ValidIdCard()
      *
      */
     private $idCard;

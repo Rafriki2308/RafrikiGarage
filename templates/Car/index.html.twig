@@ -35,7 +35,9 @@
                     <td>
                         <a href="{{ path('app_car_show', {'id': car.id}) }}">Detalle</a>
                         <br/>
-                        <a href="{{ path('app_car_edit', {'id': car.id}) }}">Editar</a>
+                        {% if is_granted('ROLE_ASSESSOR')%}
+                            <a href="{{ path('app_car_edit', {'id': car.id}) }}">Editar</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% else %}

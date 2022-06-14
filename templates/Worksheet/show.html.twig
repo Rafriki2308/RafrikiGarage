@@ -28,7 +28,7 @@
         </tbody>
     </table>
     <br/><br/>
-    {% if worksheet.isActive == true %}
+    {% if worksheet.isActive == true and is_granted('ROLE_ASSESSOR') %}
         {{ include('Worksheet/_delete_form.html.twig') }}
         </br>
         <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}No Tienes Acceso{% endblock %}
+
+{% block body %}
+    <br>
+    <h1>Upps parece que no tienes acceso a esta zona</h1>
+    <br>
+    <div class="text-center">
+        <img  id="error403Img" src="{{ asset('assets/Error403.png') }}" class="rounded" alt="Imagen Error">
+    </div>
+{% endblock %}

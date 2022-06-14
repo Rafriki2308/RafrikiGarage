@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="newForm">
+        <h1 id="registerLogo">Editar Usuario</h1>
+        <br>
+        {{ form_start(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(form.agreeTerms) }}
+        {{ form_row(form.roles) }}
+
+        <button type="submit">Registrar</button>
+        {{ form_end(form) }}
+        {{ include('user/_delete_form.html.twig') }}
+
+        <a href="{{ path('app_user_index') }}">
+            <button type="button">Volver a la Lista</button>
+        </a>&nbsp;
+    </div>
+{% endblock %}

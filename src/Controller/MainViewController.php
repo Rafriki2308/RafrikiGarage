@@ -13,6 +13,7 @@ use App\Repository\CarRepository;
 use App\Repository\CustomerRepository;
 use App\Repository\WorksheetRepository;
 use App\Service\MainViewControllerManager;
+use App\Service\PrintToPdf;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +26,7 @@ class MainViewController extends AbstractController
 {
 
     /**
-     * @Route("/", name="homepage", methods={"GET"})
+     * @Route("/carInGarage", name="homepage", methods={"GET"})
      */
     public function carInGarage(
         WorksheetRepository $worksheetRepository,
@@ -361,7 +362,6 @@ class MainViewController extends AbstractController
             'car' => $car,
             'worksheets' => $worksheets
         ]);
-        //return new Response($regPlate);
     }
 
     /**
@@ -569,28 +569,19 @@ class MainViewController extends AbstractController
      * @Route("/worksheet/print/{id}", name="app_worksheet_print", methods={"GET"})
      */
     public function printWorksheet(
-        Worksheet $worksheet
+        Worksheet $worksheet,
+        PrintToPdf $printToPdf
     ): Response
     {
+        $pictureRoute = __DIR__ . "/../../public/assets/RafrikiGaragePDF.png";
+        $picture = $printToPdf->parsePictureToBase64($pictureRoute);
 
-        $pictureRoute = __DIR__ . "/../../public/assets/RafrikiGarage.png";
-        $binaryContent = file_get_contents($pictureRoute);
-        $pictureBase64 = base64_encode($binaryContent);
-
-        $options = new Options();
-        $options->setIsRemoteEnabled(true);
-        $options->setIsHtml5ParserEnabled(true);
-
-        $pdf = new Dompdf($options);
-        $pdf->setPaper('A4');
-
-        $html = ob_get_clean();
         $html = $this->renderView('Worksheet/print_form.html.twig', [
             'worksheet' => $worksheet,
-            'ruta_imagen' => $pictureBase64,
+            'ruta_imagen' => $picture,
         ]);
-        $pdf->loadHtml($html);
-        $pdf->render();
+
+        $pdf = $printToPdf->parseToPdf($html);
 
         return new Response($pdf->stream('Hoja_de_Trabajo.pdf', [
             "Attachment" => false

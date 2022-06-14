@@ -28,8 +28,10 @@
                     <td  style="vertical-align:middle; horiz-align: center">{{ customer.eMail }}</td>
                     <td>
                         <a href="{{ path('app_customer_show', {'id': customer.id}) }}">Detalle</a>
-                        <br/>
-                        <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">Editar</a>
+                        {% if is_granted('ROLE_ASSESSOR')%}
+                            <br/>
+                            <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">Editar</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% else %}
@@ -41,7 +43,9 @@
         </table>
     </div>
     <br/><br/>
-    <a href="{{ path('app_customer_new') }}">
-        <button type="button">Crear Nuevo Cliente</button>
-    </a>
+    {% if is_granted('ROLE_ASSESSOR')%}
+        <a href="{{ path('app_customer_new') }}">
+            <button type="button">Crear Nuevo Cliente</button>
+        </a>
+    {% endif %}
 {% endblock %}

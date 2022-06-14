@@ -38,7 +38,9 @@
                         <td>
                             <a href="{{ path('app_worksheet_show', {'id': worksheet.id}) }}">Detalle</a>
                             <br/>
-                            <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">Editar</a>
+                            {% if is_granted('ROLE_ASSESSOR')%}
+                                <a href="{{ path('app_worksheet_edit', {'id': worksheet.id}) }}">Editar</a>
+                            {% endif %}
                         </td>
                     {% endif %}
                 </tr>
