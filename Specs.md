@@ -1,4 +1,4 @@
-# Specs CuryGarage
+# Specs RafrikiGarage
 
 ## Description
 
